@@ -55,5 +55,11 @@ input[type="file"] {
   padding: 0;
 }
 
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+
 
 
