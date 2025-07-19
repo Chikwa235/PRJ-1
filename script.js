@@ -99,4 +99,39 @@ profilePicInput.addEventListener('change', function (e) {
   };
   reader.readAsDataURL(file);
 });
+
+// Generate CV Preview
+const eduCount = parseInt(document.getElementById('eduCount').value);
+const expCount = parseInt(document.getElementById('expCount').value);
+function generateCV() {
+  const get = id => document.getElementById(id)?.value.trim() || '';
+  const required = ['name', 'location', 'phone', 'email', 'summary', 'skills'];
+  const missing = required.filter(id => !get(id));
+
+  if (missing.length > 0) {
+    missing.forEach(id => {
+      const el = document.getElementById(id);
+      el.style.border = '2px solid red';
+      setTimeout(() => el.style.border = '', 2000);
+    });
+
+    const errorMsg = document.getElementById('errorMsg');
+    errorMsg.style.display = 'block';
+    setTimeout(() => errorMsg.style.display = 'none', 3000);
+    return;
+  }
+
+  if (!isValidEmail(get('email'))) {
+    alert('Invalid email format');
+    return;
+  }
+
+  if (!isValidPhone(get('phone'))) {
+    alert('Invalid phone number');
+    return;
+  }
+
+  const skills = get('skills').split(',').map(s => '- ' + s.trim()).join('\n');
+  const certs = get('certifications_and_Learning') ? get('certifications_and_Learning').split('\n').map(c => '- ' + c.trim()).join('\n') : 'N/A';
+
 });
