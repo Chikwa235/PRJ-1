@@ -149,4 +149,19 @@ for (let i = 1; i <= eduCount; i++) {
   }
 }
  
+// Build dynamic experience section
+let experience = '';
+for (let i = 1; i <= expCount; i++) {
+  const title = get(`title${i}`);
+  const company = get(`company${i}`);
+  const location = get(`location${i}`);
+  const startDate = get(`startDate${i}`);
+  const endDate = get(`endDate${i}`);
+  const description = get(`description${i}`);
+
+  if (title || company || location || startDate || endDate || description) {
+    experience += `${title || 'Job Title'} at ${company || 'Company'} in ${location || 'Location'} (${startDate || 'Start'} - ${endDate || 'End'})\n${description || 'Job Description'}\n\n`;
+  }
+}
+
 });
