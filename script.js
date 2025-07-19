@@ -266,4 +266,26 @@ for (let i = 1; i <= eduCount; i++) {
       `Grade/GPA: ${grade || 'N/A'}\n\n`;
   }
 }
+
+// Build experience section manually from dynamic blocks
+let experience = '';
+const expCount = parseInt(document.getElementById('expCount').value);
+
+for (let i = 1; i <= expCount; i++) {
+  const company = get(`company${i}`);
+  const role = get(`jobTitle${i}`);
+  const expStart = get(`expStart${i}`);
+  const expEnd = get(`expEnd${i}`);
+  const responsibilities = get(`responsibilities${i}`);
+
+  if (company || role || expStart || expEnd || responsibilities) {
+    experience += 
+      `Company: ${company || 'N/A'}\n` +
+      `Role: ${role || 'N/A'}\n` +
+      `Start Date: ${expStart || 'N/A'}\n` +
+      `End Date: ${expEnd || 'N/A'}\n` +
+      `Responsibilities: ${responsibilities || 'N/A'}\n\n`;
+  }
+}
+
 });
