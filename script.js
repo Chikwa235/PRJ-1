@@ -164,4 +164,49 @@ for (let i = 1; i <= expCount; i++) {
   }
 }
 
+const cvText = `
+${get('name')}
+${get('location')}
+Phone: ${get('phone')}     Email: ${get('email')}
+${get('linkedin') ? 'LinkedIn: ' + get('linkedin') : ''}
+${get('github') ? 'GitHub: ' + get('github') : ''}
+${get('portfolio') ? 'Portfolio: ' + get('portfolio') : ''}
+
+==============================
+Professional Summary
+==============================
+${get('summary')}
+
+==============================
+Technical Skills
+==============================
+${skills}
+
+==============================
+Experience
+==============================
+${experience || 'N/A'}
+
+==============================
+Education
+==============================
+${education || 'N/A'}
+
+==============================
+Certifications
+==============================
+${certs}
+
+==============================
+Additional Info
+==============================
+${get('additional')}
+
+${profilePicDataUrl ? '[Profile Picture included below]' : ''}
+
+References available upon request.`;
+
+  document.getElementById('output').textContent = cvText;
+}
+
 });
