@@ -330,4 +330,8 @@ ${get('portfolio') ? 'Portfolio: ' + get('portfolio') : ''}`.trim(),
   doc.save('My_CV.pdf');
 }
 
+// Button bindings
+document.getElementById('generateBtn').addEventListener('click', generateCV);
+document.getElementById('downloadBtn').addEventListener('click', downloadCV);
+
 });
