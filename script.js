@@ -209,4 +209,38 @@ References available upon request.`;
   document.getElementById('output').textContent = cvText;
 }
 
+ 
+// Download PDF
+async function downloadCV() {
+  const required = ['name', 'location', 'phone', 'email', 'summary', 'skills'];
+  const missing = required.filter(id => !document.getElementById(id).value.trim());
+
+  if (missing.length > 0) {
+    missing.forEach(id => {
+      const el = document.getElementById(id);
+      el.style.border = '2px solid red';
+      setTimeout(() => el.style.border = '', 2000);
+    });
+
+    const errorMsg = document.getElementById('errorMsg');
+    errorMsg.style.display = 'block';
+    setTimeout(() => errorMsg.style.display = 'none', 3000);
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const get = id => document.getElementById(id).value.trim();
+  let y = 15;
+
+  if (profilePicDataUrl) {
+    try {
+      const props = doc.getImageProperties(profilePicDataUrl);
+      const width = 40;
+      const height = (props.height * width) / props.width;
+      doc.addImage(profilePicDataUrl, 'JPEG', doc.internal.pageSize.getWidth() - 10 - width, y, width, height);
+    } catch (e) {
+      console.warn('Image not added:', e);
+    }
+  }
 });
