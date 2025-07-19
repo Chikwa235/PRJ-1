@@ -50,5 +50,10 @@ select {
   box-sizing: border-box;
 }
 
+input[type="file"] {
+  background: transparent;
+  padding: 0;
+}
+
 
 
